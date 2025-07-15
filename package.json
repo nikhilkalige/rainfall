@@ -1,0 +1,19 @@
+{
+  "name": "rainfall",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A project to visualize rainfall data from Google Sheets using D3 and Observable Plot.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@observablehq/plot": "^0.6.17"
+  }
+}
