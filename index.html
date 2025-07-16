@@ -1,13 +1,105 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap"
+    crossorigin="">
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&amp;display=swap"
+    crossorigin="">
+  <title>Vite + TS</title>
+</head>
+
+<body>
+  <div id="observablehq-center">
+    <main id="observablehq-main">
+      <h1 id="rainfall-header" tabindex="-1">
+        <a class="observablehq-header-anchor" href="#rainfall-header">Rainfall Data</a>
+      </h1>
+
+      <div>
+        <div id="current-year-rain" class="card">
+          <div class="rain-header">
+            <div class="value-box">
+              <h1>
+                369.2
+                <span> inch</span>
+                <span class="green">↗︎</span>
+                <span class="green">20.1 %</span>
+              </h1>
+              <h2 style="color: #4269d0">2025</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="grid" id="current-year-month-container">
+    <div class="current-year-month-rain" class="card">
+      <span id="" class="">
+        <h1>369.2
+          <span> inch</span>
+          <span class="green">↗︎</span>
+          <span class="green">20.1 %</span>
+        </h1>
+        <h2 style="color: #4269d0">April</h2>
+      </span>
+    </div>
+
+    <div class="current-year-month-rain" class="card">
+      <span id="" class="">
+        <h1>369.2
+          <span> inch</span>
+          <span class="green">↗︎</span>
+          <span class="green">20.1 %</span>
+        </h1>
+        <h2 style="color: #4269d0">May</h2>
+      </span>
+    </div>
+    <div class="current-year-month-rain" class="card">
+      <span id="" class="">
+        <h1>369.2
+          <span> inch</span>
+          <span class="green">↗︎</span>
+          <span class="green">20.1 %</span>
+        </h1>
+        <h2 style="color: #4269d0">June</h2>
+      </span>
+    </div>
+    <div class="current-year-month-rain" class="card">
+      <span id="" class="">
+        <h1>369.2
+          <span> inch</span>
+          <span class="green">↗︎</span>
+          <span class="green">20.1 %</span>
+        </h1>
+        <h2 style="color: #4269d0">August</h2>
+      </span>
+    </div>
+    <div class="current-year-month-rain" class="card">
+      <span id="" class="">
+        <h1>369.2
+          <span> inch</span>
+          <span class="green">↗︎</span>
+          <span class="green">20.1 %</span>
+        </h1>
+        <h2 style="color: #4269d0">September</h2>
+      </span>
+    </div>
+  </div>
+  </main>
+  </div>
+
+  <div id="app">
+
+
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>

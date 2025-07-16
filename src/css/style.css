@@ -1,0 +1,68 @@
+@import url("./global.css");
+@import url("./layout.css");
+@import url("./grid.css");
+/* @import url("./note.css"); */
+/* @import url("./card.css"); */
+/* @import url("./inspector.css"); */
+@import url("./plot.css");
+
+#observablehq-main,
+#observablehq-header,
+#observablehq-footer {
+    margin: 1rem auto;
+    max-width: 1152px;
+}
+
+/* Personal overloads */
+#rainfall-header {
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 1.5em;
+}
+
+#current-year-rain {
+    max-width: 15em;
+    padding: 1em 0;
+    margin: 0 auto;
+
+    h1 span {
+        font: var(--font-medium);
+    }
+
+    p {
+        font: var(--font-big);
+    }
+}
+
+.rain-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center h1 and h2 horizontally */
+    text-align: center;
+    /* Ensure inline contents (e.g., span) are centered */
+}
+
+.value-box {
+    display: inline-block;
+    width: max-content;
+    text-align: left;
+}
+
+#current-year-month-container {
+    display: flex;
+}
+
+.current-year-month-rain {
+    max-width: 15em;
+    padding: 0 .5em;
+    margin: 0 auto;
+
+    h1 span {
+        font: var(--font-medium);
+    }
+
+    p {
+        font: var(--font-big);
+    }
+}
