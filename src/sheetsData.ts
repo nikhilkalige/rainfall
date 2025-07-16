@@ -18,13 +18,28 @@ type SheetResponse = {
  */
 export type RainDataPoint = {
     day: Date,
-    amount: Number,
+    amount: number,
 }
 
 export type RainfallData = {
     data: RainDataPoint[];
-    year: Number;
+    year: number;
 };
+
+export type MonthlyRainfall = {
+    month: string,
+    total: number
+};
+
+export type YearlyRainfall = {
+    total: number,
+    monthly: MonthlyRainfall[];
+};
+
+const MonthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
 
 /**
  * Wrapper to cache fetch results in sessionStorage.
@@ -45,9 +60,9 @@ async function fetchWithSessionCache<T>(key: string, fetcher: () => Promise<T>):
 
 
 // You need to set up Google API credentials and OAuth2 client
-async function getRainfallData(year: Number) {
+export async function getRainfallData(year: number) {
     const cache_key = `rainfall_${year}`;
-    return fetchWithSessionCache(cache_key, async () => {
+    const data = await fetchWithSessionCache(cache_key, async () => {
         const url = SHEETS_URL(year);
         const response = await fetch(url);
         let data: SheetResponse = await response.json();
@@ -55,11 +70,12 @@ async function getRainfallData(year: Number) {
         if (!data.values || !Array.isArray(data.values)) {
             throw new Error('Invalid data: "values" field is missing or not an array.');
         }
-        return parseSheetRainfallData(data, year);
+        return data;
     });
+    return parseSheetRainfallData(data, year);
 }
 
-function parseSheetRainfallData(data: SheetResponse, year: Number): RainfallData {
+function parseSheetRainfallData(data: SheetResponse, year: number): RainfallData {
     const rainData: RainDataPoint[] = data.values.slice(1).map(
         row => {
             const [dateStr, amountStr] = row;
@@ -74,4 +90,23 @@ function parseSheetRainfallData(data: SheetResponse, year: Number): RainfallData
     };
 }
 
-export { getRainfallData };
+function calculateMonthlyRainfall(data: RainDataPoint[], month: number): MonthlyRainfall {
+    const monthData = data.filter(point => point.day.getMonth() == month);
+    const total = monthData.reduce((sum, point) => sum + point.amount, 0);
+    return {
+        month: MonthNames[month],
+        total
+    }
+}
+
+export function calculateYearlyRainfall(data: RainfallData): YearlyRainfall {
+    const monthly = Array.from({ length: 12 }, (_, month) =>
+        calculateMonthlyRainfall(data.data, month)
+    );
+    const total = data.data.reduce((sum, point) => sum + point.amount, 0);
+    return {
+        monthly,
+        total
+    }
+}
+

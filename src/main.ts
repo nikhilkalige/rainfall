@@ -1,32 +1,40 @@
 import './css/style.css'
 import './css/theme-midnight.css'
 
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
-import { getRainfallData } from './sheetsData.ts'
+import { calculateYearlyRainfall, getRainfallData, type RainfallData } from './sheetsData.ts'
+import { RainfallCard } from './rainfallCard.ts';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
 
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!);
+function displayCurrentYearStats(data: RainfallData, year: number) {
+  const stats = calculateYearlyRainfall(data);
+
+  // Display card for the yearly information
+  const yearCard = RainfallCard({
+    value: stats.total,
+    trendPercent: 10,
+    subText: year
+  });
+  document.getElementById("current-year-rain")?.append(yearCard);
+
+  // Display month cards
+  const monthlyCards = stats.monthly.map((monthData) => {
+    return RainfallCard({
+      value: monthData.total,
+      trendPercent: 10,
+      subText: monthData.month
+    })
+  });
+
+  document.getElementById("current-year-month-container")?.append(...monthlyCards);
+}
+
 
 (async () => {
-  let data = await getRainfallData(2011);
-  console.log(data);
+  const YEAR = 2011;
+  const rainfallData = await getRainfallData(YEAR);
+  displayCurrentYearStats(rainfallData, YEAR);
+
+
+
+
 })();
