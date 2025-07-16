@@ -14,7 +14,6 @@
     "vite": "^7.0.4"
   },
   "dependencies": {
-    "@observablehq/plot": "^0.6.17",
-    "googleapis": "^153.0.0"
+    "@observablehq/plot": "^0.6.17"
   }
 }
